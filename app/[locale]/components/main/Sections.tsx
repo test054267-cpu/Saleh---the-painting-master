@@ -36,7 +36,6 @@ const Sections = () => {
   const t = useTranslations();
   const locale = useLocale();
   const sectionsContainerRef = React.useRef<HTMLDivElement | null>(null);
-  const allSectionsRef = React.useRef<HTMLElement[]>([]);
   const sectionsRef = React.useRef<HTMLElement[]>([]);
   const colors = t.raw("sections.section2.colors") as {
     name: string;
@@ -50,6 +49,7 @@ const Sections = () => {
       component: (
         <Image
           src={`/images/BaseSlider/${num}.jpeg`}
+          loading="lazy"
           className="w-full h-full object-cover"
           width={1920}
           height={1080}
@@ -77,7 +77,7 @@ const Sections = () => {
         article1: "sections.section1.card2.article1",
         article2: "sections.section1.card2.article2",
         paragraph: "sections.section1.card2.paragraph",
-        colorObj: { text: "text-taupe-500", bg: "bg-taupe-500" },
+        colorObj: { text: "text-indigo-500", bg: "bg-indigo-500" },
       },
     },
     {
@@ -101,92 +101,98 @@ const Sections = () => {
           <div className="w-300 h-full" id="overview">
             <BaseSlider slidesData={sliderData} />
           </div>
-          <div className="w-350 h-full grid grid-cols-3 grid-rows-1 gap-5 h-md:w-800">
-            {cards.map((card) => (
-              <BaseCard className="" key={card.id} content={card.content} />
-            ))}
-          </div>
         </div>
       ),
     },
     {
       id: 2,
       component: (
-        <div className="section w-max h-full flex gap-5">
-          <div className="w-350 h-full grid grid-cols-4 grid-rows-3 gap-5 h-md:w-800">
-            {colors.map((color) => (
-              <div
-                key={color.code}
-                className="w-full h-full flex flex-col justify-end p-5 rounded-2xl overflow-hidden relative group border border-transparent dark:border-[#C9A227]/10"
-                style={{ backgroundColor: color.code }}
-              >
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-                <div className="relative z-10 text-white">
-                  <p className="text-lg font-semibold">{color.name}</p>
-                  <p className="text-sm opacity-80">{color.code}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="section w-350 h-full grid grid-cols-3 grid-rows-1 gap-5 h-md:w-800">
+          {cards.map((card) => (
+            <BaseCard className="" key={card.id} content={card.content} />
+          ))}
         </div>
       ),
     },
     {
       id: 3,
       component: (
-        <div className="section w-max h-full flex gap-5">
-          <div className="w-350 h-full grid grid-cols-2 grid-rows-1 gap-5 h-md:w-800">
-            <div className="w-full h-full flex flex-col justify-center rounded-2xl overflow-hidden p-10 gap-6 bg-zinc-100 dark:bg-zinc-900">
-              {(
-                t.raw("sections.section3.features") as {
-                  title: string;
-                  desc: string;
-                }[]
-              ).map((feature, index) => (
-                <div key={index} className="flex items-start gap-4 group">
-                  <div className="w-10 h-10 min-w-10 rounded-full text-black bg-zinc-300 dark:bg-zinc-800 dark:text-amber-500 flex items-center justify-center font-bold text-lg group-hover:text-zinc-800 dark:group-hover:text-zinc-700 transition-colors">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <p className="text-lg font-semibold text-zinc-900 dark:text-[#F0E6D3]">
-                      {feature.title}
-                    </p>
-                    <p className="text-sm text-zinc-500 dark:text-amber-700 mt-1">
-                      {feature.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+        <div className="section w-350 h-full grid grid-cols-4 grid-rows-3 gap-5 h-md:w-800">
+          {colors.map((color) => (
+            <div
+              key={color.code}
+              className="w-full h-full flex flex-col justify-end p-5 rounded-2xl overflow-hidden relative group border border-transparent dark:border-[#C9A227]/10"
+              style={{ backgroundColor: color.code }}
+            >
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
+              <div className="relative z-10 text-white">
+                <p className="text-lg font-semibold">{color.name}</p>
+                <p className="text-sm opacity-80">{color.code}</p>
+              </div>
             </div>
-            <div className="w-full h-full flex flex-col justify-center items-center relative rounded-2xl overflow-hidden bg-linear-120 border border-zinc-500/30 from-zinc-500 via-zinc-300 to-zinc-500 dark:from-zinc-900 dark:via-zinc-700 dark:to-zinc-900">
-              <div className="absolute inset-0 opacity-20 dark:opacity-10 bg-[radial-gradient(circle_at_top_right,#71717b,transparent_60%)]" />
-              <span className="relative z-10 text-[10rem] leading-none font-bold text-zinc-800 dark:text-amber-500">
-                7
-              </span>
-              <span className="relative z-10 text-2xl font-semibold mt-3 tracking-wide text-zinc-900 dark:text-amber-700">
-                {t("sections.section3.years")}
-              </span>
-              <div className="relative z-10 w-16 h-0.5 bg-amber-500 mt-5" />
-              <p className="relative z-10 text-sm mt-5 text-center max-w-xs text-zinc-800 dark:text-zinc-100">
-                {t("sections.section3.description")}
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       ),
     },
     {
       id: 4,
       component: (
+        <div className="section w-150 h-full flex flex-col justify-center rounded-2xl overflow-hidden p-10 gap-6 border border-black/50 dark:border-white/30  bg-zinc-100 dark:bg-black">
+          {(
+            t.raw("sections.section3.features") as {
+              title: string;
+              desc: string;
+            }[]
+          ).map((feature, index) => (
+            <div key={index} className="flex items-start gap-4 group">
+              <div className="w-10 h-10 min-w-10 rounded-full text-black bg-zinc-100 dark:bg-zinc-800 dark:text-white flex items-center justify-center font-bold text-lg group-hover:text-zinc-800 dark:group-hover:text-zinc-700 transition-colors">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+              <div>
+                <p className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  {feature.title}
+                </p>
+                <p className="text-sm text-zinc-500 dark:text-white mt-1">
+                  {feature.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      id: 5,
+      component: (
+        <div className="section w-150 h-full">
+          <div className="w-full h-full flex flex-col justify-center items-center relative rounded-2xl overflow-hidden border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black">
+            <div className="absolute inset-0 opacity-20 dark:opacity-10 bg-[radial-gradient(circle_at_top_right,#71717b,transparent_60%)]" />
+            <span className="relative z-10 text-[10rem] leading-none font-bold text-zinc-800 dark:text-white">
+              7
+            </span>
+            <span className="relative z-10 text-2xl font-semibold mt-3 tracking-wide text-zinc-900 dark:text-white">
+              {t("sections.section3.years")}
+            </span>
+            <div className="relative z-10 w-16 h-0.5 bg-white mt-5" />
+            <p className="relative z-10 text-sm mt-5 text-center max-w-xs text-zinc-800 dark:text-zinc-100">
+              {t("sections.section3.description")}
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 6,
+      component: (
         <div className="section w-max h-full flex flex-col gap-10 justify-between">
           <div className="flex flex-col items-center gap-3 text-center">
-            <span className="text-sm font-semibold tracking-[0.3rem] text-amber-500 uppercase">
+            <span className="text-sm font-semibold tracking-[0.3rem] text-white uppercase">
               {t("sections.section4.subtitle")}
             </span>
             <h2 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100">
               {t("sections.section4.title")}
             </h2>
-            <div className="w-16 h-0.5 bg-amber-500 mt-1" />
+            <div className="w-16 h-0.5 bg-white mt-1" />
             <p className="text-base text-zinc-900 dark:text-zinc-100 max-w-md mt-2">
               {t("sections.section4.description")}
             </p>
@@ -201,22 +207,22 @@ const Sections = () => {
             ).map((testimonial, index) => (
               <div
                 key={index}
-                className="w-full flex flex-col justify-between rounded-2xl bg-linear-120 border border-zinc-500/30 from-zinc-500 via-zinc-300 to-zinc-500 dark:from-zinc-900 dark:via-zinc-700 dark:to-zinc-900 p-8 relative overflow-hidden group shadow-sm dark:shadow-none"
+                className="w-full flex flex-col justify-between rounded-2xl border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black p-8 relative overflow-hidden group shadow-sm dark:shadow-none"
               >
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_left,#71717b,transparent_60%)]" />
-                <span className="relative z-10 text-6xl font-serif text-amber-500 leading-none opacity-70"></span>
+                <span className="relative z-10 text-6xl font-serif text-white leading-none opacity-70"></span>
                 <p className="relative z-10 text-zinc-900 dark:text-zinc-100 text-base leading-relaxed mt-2">
                   {testimonial.review}
                 </p>
-                <div className="relative z-10 flex items-center gap-3 mt-6 pt-5 border-t border-[#C9A227]/20">
-                  <div className="w-11 h-11 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg">
+                <div className="relative z-10 flex items-center gap-3 mt-6 pt-5 border-t border-black/20">
+                  <div className="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white font-bold text-lg dark:bg-white dark:text-black">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-zinc-900 dark:text-zinc-100 font-semibold text-sm">
+                    <p className="text-black dark:text-white font-semibold text-sm">
                       {testimonial.name}
                     </p>
-                    <p className="text-zinc-900 dark:text-amber-500 text-xs">
+                    <p className="text-zinc-900 dark:text-white text-xs">
                       {testimonial.role}
                     </p>
                   </div>
@@ -264,16 +270,12 @@ const Sections = () => {
     );
   }, []);
 
-  React.useEffect(() => {
-    console.log();
-  }, []);
-
   return (
     <>
       <Header />
       <Main />
       <div
-        className="h-dvh overflow-hidden flex flex-row-reverse justify-center gap-5 pt-30 pb-10 rounded-2xl"
+        className="h-dvh overflow-hidden flex flex-row-reverse justify-center gap-5 pt-30 pb-5 rounded-2xl"
         ref={sectionsContainerRef}
       >
         {combinedSectionsData.map((section, index) => (
@@ -290,7 +292,9 @@ const Sections = () => {
           </Section>
         ))}
       </div>
-      <Footer />
+      <div className="px-5 pb-5">
+        <Footer />
+      </div>
     </>
   );
 };

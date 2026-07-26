@@ -1,11 +1,11 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 type SectionType = {
   className?: string;
   children?: React.ReactNode;
 };
 
-const Section = forwardRef<HTMLElement, SectionType>(
+const Section = React.forwardRef<HTMLElement, SectionType>(
   ({ className, children }, ref) => {
     return (
       <section ref={ref} className={`${className} fade-up h-full`}>

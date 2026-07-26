@@ -1,5 +1,4 @@
-"use client";
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -33,7 +32,9 @@ function BaseSlider({ slidesData = [] }: BaseSliderPropsType) {
         className="mySwiper w-full h-full rounded-2xl border"
       >
         {slidesData.map((slide) => (
-          <SwiperSlide key={slide.id}>{slide.component}</SwiperSlide>
+          <SwiperSlide lazy={true} key={slide.id}>
+            {slide.component}
+          </SwiperSlide>
         ))}
       </Swiper>
     </>

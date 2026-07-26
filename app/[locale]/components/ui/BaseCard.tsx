@@ -1,4 +1,4 @@
-import React, { forwardRef, TouchEventHandler, TouchEvent } from "react";
+import React from "react";
 import TiltedCard from "@/components/TiltedCard";
 import { useTranslations } from "next-intl";
 import BaseLink from "./BaseLink";
@@ -24,17 +24,18 @@ type BaseCardPropsType = {
   className?: string;
 };
 
-const BaseCard = forwardRef<HTMLDivElement, BaseCardPropsType>(
+const BaseCard = React.forwardRef<HTMLDivElement, BaseCardPropsType>(
   ({ content, className }, ref) => {
     const t = useTranslations();
 
     return (
       <div
         ref={ref}
-        className={`${className} no-scrollbar overflow-auto rounded-2xl p-10 w-full h-full flex flex-col gap-5 bg-linear-120 border border-zinc-500/30 from-zinc-500 via-zinc-300 to-zinc-500 dark:from-zinc-900 dark:via-zinc-700 dark:to-zinc-900 h-md:flex h-md:flex-row`}
+        className={`${className} no-scrollbar overflow-auto relative rounded-2xl p-10 w-full h-full flex flex-col gap-5 border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black h-md:flex h-md:flex-row`}
       >
         <div className="w-full flex justify-center items-center h-md:w-1/2">
           <TiltedCard
+            loading="lazy"
             imageSrc={content.image}
             altText="Kendrick Lamar - GNX Album Cover"
             captionText="Image"

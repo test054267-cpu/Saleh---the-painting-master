@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 type BaseButtonType = {
   className?: string;
@@ -6,7 +6,7 @@ type BaseButtonType = {
   onClick?: () => void;
 };
 
-const BaseButton = forwardRef<HTMLButtonElement, BaseButtonType>(
+const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonType>(
   ({ className, children, onClick }, ref) => {
     return (
       <button

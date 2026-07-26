@@ -1,14 +1,6 @@
-"use client";
 import React from "react";
-import Link from "next/link";
-import BaseLink from "../ui/BaseLink";
-import { FaExternalLinkAlt } from "react-icons/fa";
 import { useTranslations, useLocale } from "next-intl";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { FaTiktok } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaSnapchatGhost } from "react-icons/fa";
 import MobileMenu from "../ui/MobileMenu";
 import BaseButton from "../ui/BaseButton";
 import { CgDarkMode } from "react-icons/cg";
@@ -67,40 +59,19 @@ const Header = () => {
 
   return (
     <header
-      className={`${isDown ? "-top-full" : "top-5"} ${isExceeded ? "h-20 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black" : "h-40 border-none rounded-bl-2xl backdrop-blur-2xl bg-[rgba(255,255,255,0.1)] dark:bg-[rgba(0,0,0,0.1)]"} flex flex-col fixed right-8 left-8 translate-x-0 rounded-2xl z-30 transition-all duration-300`}
+      className={`${isDown ? "-top-full" : "top-5"} ${isExceeded ? "h-20 border-t border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black" : "h-40 border-none rounded-bl-2xl backdrop-blur-2xl bg-[rgba(255,255,255,0.1)] dark:bg-[rgba(0,0,0,0.1)]"} flex flex-col fixed right-5 left-5 translate-x-0 rounded-2xl z-30 transition-all duration-300`}
     >
+      <div className="pointer-events-none absolute inset-0 opacity-20 dark:opacity-10 bg-[radial-gradient(circle_at_top,#71717b,transparent_60%)]" />
+      <div className="h-0.5 w-full bg-linear-to-r from-transparent via-zinc-400 to-transparent" />
       <div
         className={`${isExceeded ? "h-0" : "h-1/2"} overflow-hidden flex justify-between relative transition-all duration-300 px-5`}
       >
         <div className="hidden lg:h-full lg:flex lg:items-center lg:gap-5">
-          {/* <div className="flex justify-center items-center gap-5">
-            <a href="http://" target="_blank" rel="noopener noreferrer">
-              <span className="text-2xl">
-                <FaTiktok />
-              </span>
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <span className="text-2xl">
-                <FaWhatsapp />
-              </span>
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <span className="text-2xl">
-                <FaInstagram />
-              </span>
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <span className="text-2xl">
-                <FaSnapchatGhost />
-              </span>
-            </a>
-          </div>
-          <span className="h-1/3 w-0.5 flex bg-neutral-400/40"></span> */}
           <a
             href="tel:+966537794871"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-full flex justify-center items-center gap-2.5 text-white dark:text-amber-500"
+            className="h-full flex justify-center items-center gap-2.5 text-white dark:text-white"
           >
             <span> +966537794871</span>
             <span>
@@ -112,7 +83,7 @@ const Header = () => {
             href="mailto:Salah20131011@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white dark:text-amber-500"
+            className="text-white dark:text-white"
           >
             Salah20131011@gmail.com
           </a>
@@ -152,14 +123,14 @@ const Header = () => {
           <MobileMenu isDown={isDown} isExceeded={isExceeded} />
           <BaseButton onClick={handleChangeMode}>
             <span
-              className={`${isExceeded ? "text-black dark:text-amber-500" : "text-white dark:text-amber-500"} text-2xl`}
+              className={`${isExceeded ? "text-black dark:text-white" : "text-white dark:text-white"} text-2xl`}
             >
               <CgDarkMode />
             </span>
           </BaseButton>
           <BaseButton onClick={handleChangeLang}>
             <span
-              className={`${isExceeded ? "text-black dark:text-amber-500" : "text-white dark:text-amber-500"} text-2xl`}
+              className={`${isExceeded ? "text-black dark:text-white" : "text-white dark:text-white"} text-2xl`}
             >
               <IoLanguageSharp />
             </span>

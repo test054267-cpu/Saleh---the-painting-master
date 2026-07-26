@@ -9,7 +9,7 @@ type MobileMenuPropsType = {
   isExceeded: boolean;
 };
 
-const MobileMenu = ({ isDown, isExceeded }: MobileMenuPropsType) => {
+const MobileMenu = ({ isExceeded }: MobileMenuPropsType) => {
   const t = useTranslations();
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>();
   const menuRef = React.useRef<HTMLDivElement>(null);
@@ -41,13 +41,13 @@ const MobileMenu = ({ isDown, isExceeded }: MobileMenuPropsType) => {
         className="h-full flex justify-center items-center"
       >
         <span
-          className={`${isExceeded ? "text-black dark:text-amber-500" : "text-white dark:text-amber-500"} text-3xl `}
+          className={`${isExceeded ? "text-black dark:text-white" : "text-white dark:text-white"} text-3xl `}
         >
           <CiMenuBurger />
         </span>
       </button>
       <div
-        className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-30" : "top-50"} h-max overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black`}
+        className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-25" : "top-45"} h-max overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black`}
       >
         <div className="w-full h-full flex flex-col gap-5 p-5">
           {menuItems.map((item, index) => {
@@ -61,12 +61,12 @@ const MobileMenu = ({ isDown, isExceeded }: MobileMenuPropsType) => {
                       block: "start",
                     });
                   }}
-                  className="w-full h-12 flex justify-between items-center px-5 transition-all duration-300 rounded-lg border border-amber-500/30 bg-zinc-50 dark:bg-zinc-900"
+                  className="w-full h-12 flex justify-between items-center px-5 transition-all duration-300 rounded-lg border border-white/30 bg-zinc-50 dark:bg-zinc-900"
                 >
-                  <span className="text-black dark:text-amber-500">
+                  <span className="text-black dark:text-white">
                     {item.label}
                   </span>
-                  <span className="text-amber-500">
+                  <span className="text-white">
                     <Icon />
                   </span>
                 </BaseButton>

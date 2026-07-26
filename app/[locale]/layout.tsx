@@ -15,10 +15,6 @@ const openSans = Open_Sans({
   subsets: ["latin"],
 });
 
-export function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
-}
-
 export const metadata: Metadata = {
   title: "مقاول دهانات ومصمم ديكورات | اتصل الآن",
   description: "حوّل منزلك أو منشأتك إلى تحفة فنية مع خدمات دهانات احترافية.",

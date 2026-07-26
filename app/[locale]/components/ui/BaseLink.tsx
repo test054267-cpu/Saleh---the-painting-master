@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import Link from "next/link";
 
 type BaseLinkType = {
@@ -8,7 +8,7 @@ type BaseLinkType = {
   href?: string;
 };
 
-const BaseLink = forwardRef<HTMLAnchorElement, BaseLinkType>(
+const BaseLink = React.forwardRef<HTMLAnchorElement, BaseLinkType>(
   ({ className, children, onClick, href = "/" }, ref) => {
     return (
       <Link ref={ref} href={href} onClick={onClick} className={className}>

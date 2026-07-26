@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 const Footer = () => {
   const t = useTranslations();
   return (
-    <footer className="section relative w-full rounded-2xl bg-linear-to-b from-zinc-100 to-zinc-300 dark:from-zinc-950 dark:to-zinc-800 border-t border-zinc-400/30 overflow-hidden">
+    <footer className="section relative w-full rounded-2xl bg-linear-to-b from-zinc-100 to-zinc-300 dark:from-zinc-900 dark:to-black border-t border-zinc-400/30 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-20 dark:opacity-10 bg-[radial-gradient(circle_at_top,#71717b,transparent_60%)]" />
       <div className="h-0.5 w-full bg-linear-to-r from-transparent via-zinc-400 to-transparent" />
       <div className="relative max-w-350 mx-auto px-8 md:px-16 pt-16 pb-8">
@@ -17,20 +17,6 @@ const Footer = () => {
             <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed max-w-xs">
               {t("footer.description")}
             </p>
-            {/* <div className="flex items-center gap-3 mt-2">
-              {socialLinks.map((social) => (
-                
-                  key={social.name}
-                  href={social.href}
-                  aria-label={social.name}
-                  className="w-10 h-10 rounded-full border border-zinc-400/40 flex items-center justify-center text-zinc-500 hover:bg-zinc-400 hover:text-white dark:hover:text-zinc-900 transition-all duration-300"
-                >
-                  <span className="text-xs font-semibold">
-                    {social.name.charAt(0)}
-                  </span>
-                </a>
-              ))}
-            </div> */}
           </div>
           <div className="flex flex-col gap-4">
             <h4 className="text-sm font-semibold tracking-[0.25em] text-zinc-900 dark:text-zinc-100 uppercase mb-2">
