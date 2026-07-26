@@ -1,0 +1,86 @@
+import React from "react";
+import { CiMenuBurger } from "react-icons/ci";
+import BaseButton from "./BaseButton";
+import { FaPaintRoller } from "react-icons/fa";
+import { useTranslations } from "next-intl";
+
+type MobileMenuPropsType = {
+  isDown: boolean;
+  isExceeded: boolean;
+};
+
+const MobileMenu = ({ isDown, isExceeded }: MobileMenuPropsType) => {
+  const t = useTranslations();
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>();
+  const menuRef = React.useRef<HTMLDivElement>(null);
+
+  const menuItems = [
+    {
+      label: t("header.mobileMenu.overview"),
+      icon: FaPaintRoller,
+    },
+  ];
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleToggle = () => setIsMenuOpen((prev) => !prev);
+  return (
+    <div ref={menuRef} className="h-full relative z-30 md:hidden">
+      <button
+        onClick={handleToggle}
+        className="h-full flex justify-center items-center"
+      >
+        <span
+          className={`${isExceeded ? "text-black dark:text-amber-500" : "text-white dark:text-amber-500"} text-3xl `}
+        >
+          <CiMenuBurger />
+        </span>
+      </button>
+      <div
+        className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-30" : "top-50"} h-max overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black`}
+      >
+        <div className="w-full h-full flex flex-col gap-5 p-5">
+          {menuItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <React.Fragment key={index}>
+                <BaseButton
+                  onClick={() => {
+                    document.getElementById("overview")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
+                  className="w-full h-12 flex justify-between items-center px-5 transition-all duration-300 rounded-lg border border-amber-500/30 bg-zinc-50 dark:bg-zinc-900"
+                >
+                  <span className="text-black dark:text-amber-500">
+                    {item.label}
+                  </span>
+                  <span className="text-amber-500">
+                    <Icon />
+                  </span>
+                </BaseButton>
+
+                {index !== menuItems.length - 1 && (
+                  <span className="w-full h-px flex bg-[#C9A227]/20"></span>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MobileMenu;
