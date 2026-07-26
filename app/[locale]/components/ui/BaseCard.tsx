@@ -35,7 +35,6 @@ const BaseCard = React.forwardRef<HTMLDivElement, BaseCardPropsType>(
       >
         <div className="w-full flex justify-center items-center h-md:w-1/2">
           <TiltedCard
-            loading="lazy"
             imageSrc={content.image}
             altText="Kendrick Lamar - GNX Album Cover"
             captionText="Image"
