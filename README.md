@@ -1,1 +1,0 @@
-# Saleh---the-painting-master
