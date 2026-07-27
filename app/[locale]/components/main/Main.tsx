@@ -16,12 +16,14 @@ const Main = () => {
         </p>
         <BaseButton
           onClick={() => {
-            document.querySelector("section")?.scrollIntoView({
+            const section = document.getElementById("overview");
+            if (!section) return;
+            section.scrollIntoView({
               behavior: "smooth",
               block: "start",
             });
           }}
-          className="w-50 h-12 flex justify-center items-center rounded-full shadow-2xl relative z-20 border border-white/20 text-black bg-zinc-300 dark:text-white dark:bg-zinc-900"
+          className="w-50 h-12 flex justify-center items-center rounded-lg shadow-2xl relative z-20 border border-white/20 text-black bg-zinc-300 dark:text-white dark:bg-zinc-900"
         >
           {t("BaseButton.start")}
         </BaseButton>

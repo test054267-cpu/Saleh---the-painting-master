@@ -82,7 +82,6 @@ const Sections = () => {
     },
     {
       id: 3,
-
       content: {
         image: "/images/Section/3.webp",
         article1: "sections.section1.card3.article1",
@@ -97,8 +96,8 @@ const Sections = () => {
     {
       id: 1,
       component: (
-        <div className="section w-max h-full flex gap-5">
-          <div className="w-300 h-full" id="overview">
+        <div className="section w-full h-100">
+          <div className="w-full h-full">
             <BaseSlider slidesData={sliderData} />
           </div>
         </div>
@@ -107,7 +106,7 @@ const Sections = () => {
     {
       id: 2,
       component: (
-        <div className="section w-350 h-full grid grid-cols-3 grid-rows-1 gap-5 h-md:w-800">
+        <div className="section w-full h-full grid grid-cols-1 grid-rows-3 gap-5 h-md:w-800 lg:w-350 lg:grid-cols-3 lg:grid-rows-1">
           {cards.map((card) => (
             <BaseCard className="" key={card.id} content={card.content} />
           ))}
@@ -117,7 +116,7 @@ const Sections = () => {
     {
       id: 3,
       component: (
-        <div className="section w-350 h-full grid grid-cols-4 grid-rows-3 gap-5 h-md:w-800">
+        <div className="section w-full h-full grid grid-cols-1 auto-rows-auto gap-5 h-md:w-800 lg:w-350 lg:grid-cols-4 lg:grid-rows-3">
           {colors.map((color) => (
             <div
               key={color.code}
@@ -137,7 +136,7 @@ const Sections = () => {
     {
       id: 4,
       component: (
-        <div className="section w-150 h-full flex flex-col justify-center rounded-2xl overflow-hidden p-10 gap-6 border border-black/50 dark:border-white/30  bg-zinc-100 dark:bg-black">
+        <div className="section w-full h-full flex flex-col justify-center rounded-2xl overflow-hidden p-10 gap-6 border border-black/50 dark:border-white/30  bg-zinc-100 dark:bg-black lg:w-150">
           {(
             t.raw("sections.section3.features") as {
               title: string;
@@ -164,7 +163,7 @@ const Sections = () => {
     {
       id: 5,
       component: (
-        <div className="section w-150 h-full">
+        <div className="section w-full h-200 lg:w-150 lg:h-full">
           <div className="w-full h-full flex flex-col justify-center items-center relative rounded-2xl overflow-hidden border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black">
             <div className="absolute inset-0 opacity-20 dark:opacity-10 bg-[radial-gradient(circle_at_top_right,#71717b,transparent_60%)]" />
             <span className="relative z-10 text-[10rem] leading-none font-bold text-zinc-800 dark:text-white">
@@ -197,7 +196,7 @@ const Sections = () => {
               {t("sections.section4.description")}
             </p>
           </div>
-          <div className="w-350 grid grid-cols-3 grid-rows-2 gap-5 h-md:w-800">
+          <div className="w-full grid grid-cols-1 auto-cols-auto gap-5 h-md:w-800 lg:w-350 lg:grid-cols-3 lg:grid-rows-2">
             {(
               t.raw("sections.section4.testimonials") as {
                 name: string;
@@ -244,27 +243,23 @@ const Sections = () => {
       (total, section) => total + section.offsetWidth,
       0,
     );
-    const totalScrollAmount = totalWidthOfAllSections;
+    const scrollDistance = totalWidthOfAllSections - window.innerWidth;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: "top top",
         scrub: true,
         pin: true,
-        end: () => `+=${totalScrollAmount}`,
+        end: () => `+=${scrollDistance}`,
       },
     });
     tl.fromTo(
       sections,
       {
-        x: () =>
-          locale === "ar"
-            ? window.innerWidth + totalWidthOfAllSections
-            : window.innerWidth - totalWidthOfAllSections,
+        x: locale === "ar" ? scrollDistance : -scrollDistance,
       },
       {
-        x: () =>
-          locale === "ar" ? -totalWidthOfAllSections : totalWidthOfAllSections,
+        x: locale === "ar" ? -scrollDistance : scrollDistance,
         ease: "none",
       },
     );
@@ -275,7 +270,8 @@ const Sections = () => {
       <Header />
       <Main />
       <div
-        className="h-dvh overflow-hidden flex flex-row-reverse justify-center gap-5 pt-30 pb-5 rounded-2xl"
+        className="hidden lg:h-dvh lg:overflow-hidden lg:flex lg:flex-row-reverse lg:justify-center lg:gap-5 lg:pt-30 lg:pb-5 lg:rounded-2xl"
+        id="overview"
         ref={sectionsContainerRef}
       >
         {combinedSectionsData.map((section, index) => (
@@ -288,6 +284,13 @@ const Sections = () => {
             key={section.id}
             className=""
           >
+            {section.component}
+          </Section>
+        ))}
+      </div>
+      <div className="flex flex-col gap-10 p-5 lg:hidden">
+        {combinedSectionsData.map((section) => (
+          <Section key={section.id} className="">
             {section.component}
           </Section>
         ))}
