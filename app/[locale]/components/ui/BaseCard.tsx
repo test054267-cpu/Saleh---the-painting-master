@@ -31,9 +31,9 @@ const BaseCard = React.forwardRef<HTMLDivElement, BaseCardPropsType>(
     return (
       <div
         ref={ref}
-        className={`${className} no-scrollbar overflow-auto relative rounded-2xl p-10 w-full h-full flex flex-col gap-5 border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black h-md:flex h-md:flex-row`}
+        className={`${className} no-scrollbar overflow-auto relative rounded-2xl p-10 w-full h-full flex flex-col gap-5 border border-zinc-500/30 bg-linear-120 from-zinc-100 via-zinc-300 to-zinc-100 dark:from-black dark:via-zinc-900 dark:to-black`}
       >
-        <div className="w-full flex justify-center items-center h-md:w-1/2">
+        <div className="w-full flex justify-center items-center">
           <TiltedCard
             imageSrc={content.image}
             altText="Kendrick Lamar - GNX Album Cover"
@@ -49,7 +49,7 @@ const BaseCard = React.forwardRef<HTMLDivElement, BaseCardPropsType>(
             displayOverlayContent
           />
         </div>
-        <div className="w-full flex flex-col items-start pt-10 gap-10 h-md:w-1/2">
+        <div className="w-full flex flex-col items-start pt-10 gap-10">
           <div
             className={`${content.colorObj?.bg} w-15 h-2 rounded-full`}
           ></div>

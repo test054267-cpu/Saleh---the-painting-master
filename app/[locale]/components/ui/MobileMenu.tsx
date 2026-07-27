@@ -49,7 +49,7 @@ const MobileMenu = ({ isExceeded }: MobileMenuPropsType) => {
       <div
         className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-25" : "top-45"} h-max overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black`}
       >
-        <div className="w-full h-full flex flex-col gap-5 p-5">
+        <div className="w-full h-12 flex flex-col gap-5 p-5">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
             return (
