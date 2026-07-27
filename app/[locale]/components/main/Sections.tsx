@@ -106,7 +106,7 @@ const Sections = () => {
     {
       id: 2,
       component: (
-        <div className="section w-full h-full grid grid-cols-1 grid-rows-3 gap-5 h-md:w-800 lg:w-350 lg:grid-cols-3 lg:grid-rows-1">
+        <div className="section w-full h-full grid grid-cols-1 grid-rows-3 gap-5 lg:w-350 lg:grid-cols-3 lg:grid-rows-1">
           {cards.map((card) => (
             <BaseCard className="" key={card.id} content={card.content} />
           ))}
@@ -116,7 +116,7 @@ const Sections = () => {
     {
       id: 3,
       component: (
-        <div className="section w-full h-full grid grid-cols-1 auto-rows-auto gap-5 h-md:w-800 lg:w-350 lg:grid-cols-4 lg:grid-rows-3">
+        <div className="section w-full h-full grid grid-cols-1 auto-rows-auto gap-5 lg:w-350 lg:grid-cols-4 lg:grid-rows-3">
           {colors.map((color) => (
             <div
               key={color.code}
@@ -196,7 +196,7 @@ const Sections = () => {
               {t("sections.section4.description")}
             </p>
           </div>
-          <div className="w-full grid grid-cols-1 auto-cols-auto gap-5 h-md:w-800 lg:w-350 lg:grid-cols-3 lg:grid-rows-2">
+          <div className="w-full grid grid-cols-1 auto-cols-auto gap-5 lg:w-350 lg:grid-cols-3 lg:grid-rows-2">
             {(
               t.raw("sections.section4.testimonials") as {
                 name: string;
