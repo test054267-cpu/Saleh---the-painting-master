@@ -16,6 +16,7 @@ const MobileMenu = ({ isExceeded }: MobileMenuPropsType) => {
 
   const menuItems = [
     {
+      id: 1,
       label: t("header.mobileMenu.overview"),
       icon: FaPaintRoller,
     },
@@ -47,37 +48,35 @@ const MobileMenu = ({ isExceeded }: MobileMenuPropsType) => {
         </span>
       </button>
       <div
-        className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-25" : "top-45"} h-max overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-50 to-zinc-300 dark:from-zinc-900 dark:to-black`}
+        className={`${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} ${isExceeded ? "top-25" : "top-45"} h-22.5 flex flex-col gap-5 py-5 px-2.5 overflow-hidden fixed right-0 left-0 rounded-2xl transition-all duration-300 border border-zinc-500/30 bg-linear-to-b from-zinc-100 to-zinc-300 dark:from-zinc-900 dark:to-black`}
       >
-        <div className="w-full h-12 flex flex-col gap-5 p-5">
-          {menuItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <React.Fragment key={index}>
-                <BaseButton
-                  onClick={() => {
-                    document.getElementById("overview")?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                  }}
-                  className="w-full h-12 flex justify-between items-center px-5 transition-all duration-300 rounded-lg border border-white/30 bg-zinc-50 dark:bg-zinc-900"
-                >
-                  <span className="text-black dark:text-white">
-                    {item.label}
-                  </span>
-                  <span className="text-white">
-                    <Icon />
-                  </span>
-                </BaseButton>
+        {menuItems.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <React.Fragment key={item.id}>
+              <BaseButton
+                onClick={() => {
+                  const section = document.getElementById("overview");
+                  if (!section) return;
+                  section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="w-full h-12 flex justify-between items-center px-5 transition-all duration-300 rounded-lg border border-white/30 bg-zinc-50 dark:bg-zinc-900"
+              >
+                <span className="text-black dark:text-white">{item.label}</span>
+                <span className="text-white">
+                  <Icon />
+                </span>
+              </BaseButton>
 
-                {index !== menuItems.length - 1 && (
-                  <span className="w-full h-px flex bg-[#C9A227]/20"></span>
-                )}
-              </React.Fragment>
-            );
-          })}
-        </div>
+              {index !== menuItems.length - 1 && (
+                <span className="w-full h-px flex bg-[#C9A227]/20"></span>
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );

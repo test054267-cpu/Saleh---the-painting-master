@@ -94,10 +94,10 @@ const Header = () => {
         <div className="w-full h-px absolute left-0 bottom-0 bg-linear-to-r from-transparent via-neutral-400 to-transparent"></div>
       </div>
       <div
-        className={`${isExceeded ? "h-full text-zinc-900 dark:text-zinc-100" : "h-1/2 text-zinc-100 dark:text-zinc-100"} flex justify-between lg:px-20`}
+        className={`${isExceeded ? "h-full text-zinc-900 dark:text-zinc-100" : "h-1/2 text-zinc-100 dark:text-zinc-100"} flex justify-between px-5 lg:px-20`}
       >
         <nav className="hidden md:h-full md:flex md:items-center md:gap-10">
-          <ul className="h-full flex justify-center items-center gap-10  ">
+          <ul className="h-full flex justify-center items-center gap-10">
             <li>
               <BaseButton
                 onClick={() => {
@@ -112,14 +112,8 @@ const Header = () => {
               </BaseButton>
             </li>
           </ul>
-          {/* <BaseLink className="w-50 h-12 flex justify-center items-center relative rounded-full border border-neutral-400/40 text-neutral-900 bg-neutral-200 dark:text-neutral-100 dark:bg-neutral-950">
-            <span className="w-10 h-10 flex justify-center items-center absolute top-0.5 left-1 bottom-0.5 rounded-full border border-neutral-400/40 text-neutral-500 bg-white dark:bg-neutral-800">
-              <FaExternalLinkAlt />
-            </span>
-            <span className="">{t("BaseLink.price")}</span>
-          </BaseLink> */}
         </nav>
-        <div className="h-full flex justify-start items-center px-10 gap-10">
+        <div className="h-full flex justify-start items-center gap-10">
           <MobileMenu isDown={isDown} isExceeded={isExceeded} />
           <BaseButton onClick={handleChangeMode}>
             <span
