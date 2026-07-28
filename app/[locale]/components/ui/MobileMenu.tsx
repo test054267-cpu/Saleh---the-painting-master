@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import BaseButton from "./BaseButton";

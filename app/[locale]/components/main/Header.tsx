@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { BsFillTelephoneFill } from "react-icons/bs";
