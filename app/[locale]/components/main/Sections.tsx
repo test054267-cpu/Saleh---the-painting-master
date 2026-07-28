@@ -276,7 +276,7 @@ const Sections = () => {
               </span>
               <div className="relative z-10 w-16 h-0.5 bg-white mt-5" />
               <p className="relative z-10 text-sm mt-5 text-center max-w-xs text-zinc-800 dark:text-zinc-100">
-                {t("sections.section5.description")}
+                {t("sections.section4.description")}
               </p>
             </div>
           </div>
@@ -293,7 +293,7 @@ const Sections = () => {
               </span>
               <div className="relative z-10 w-16 h-0.5 bg-white mt-5" />
               <p className="relative z-10 text-sm mt-5 text-center max-w-xs text-zinc-800 dark:text-zinc-100">
-                {t("sections.section5.description")}
+                {t("sections.section4.description")}
               </p>
             </div>
           </div>
